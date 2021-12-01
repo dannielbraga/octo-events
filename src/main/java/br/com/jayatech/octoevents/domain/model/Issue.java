@@ -1,73 +1,106 @@
 package br.com.jayatech.octoevents.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import br.com.jayatech.octoevents.rest.dto.ReactionsDto;
+import br.com.jayatech.octoevents.rest.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
+@Table(name = "issue")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Issue {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_internal")
+    private Long idInternal;
 
+    @Column(name = "issue_id")
+    private Long issueId;
+
+    @Column(name = "url")
     private String url;
 
-    @JsonProperty("repository_url")
+    @Column(name = "repositoryUrl")
     private String repositoryUrl;
 
-    @JsonProperty("labels_url")
+    @Column(name = "labelsUrl")
     private String labelsUrl;
 
-    @JsonProperty("comments_url")
+    @Column(name = "commentsUrl")
     private String commentsUrl;
 
-    @JsonProperty("events_url")
+    @Column(name = "eventsUrl")
     private String eventsUrl;
 
-    @JsonProperty("html_url")
+    @Column(name = "htmlUrl")
     private String htmlUrl;
 
-    @JsonProperty("node_id")
+    @Column(name = "nodeId")
     private String nodeId;
 
+    @Column(name = "number")
     private int number;
+
+    @Column(name = "title")
     private String title;
-    private User user;
+
+    @Column(name = "userDto")
+    private UserDto userDto;
+
+    @Column(name = "labels")
     private List<Object> labels;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "locked")
     private boolean locked;
+
+    @Column(name = "assignee")
     private Object assignee;
+
+    @Column(name = "assignees")
     private List<Object> assignees;
+
+    @Column(name = "milestone")
     private Object milestone;
+
+    @Column(name = "comments")
     private int comments;
 
-    @JsonProperty("created_at")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @JsonProperty("updated_at")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @JsonProperty("closed_at")
+    @Column(name = "closed_at")
     private LocalDateTime closedAt;
 
-    @JsonProperty("author_association")
+    @Column(name = "authorAssociation")
     private String authorAssociation;
 
-    @JsonProperty("active_lock_reason")
+    @Column(name = "activeLockReason")
     private String activeLockReason;
 
+    @Column(name = "body")
     private String body;
-    private Reactions reactions;
 
-    @JsonProperty("timeline_url")
+    @Column(name = "reactions")
+    private ReactionsDto reactions;
+
+    @Column(name = "timelineUrl")
     private String timelineUrl;
 
-    @JsonProperty("performed_via_github_app")
+    @Column(name = "performed_github_app")
     private Object performedGithubApp;
 }

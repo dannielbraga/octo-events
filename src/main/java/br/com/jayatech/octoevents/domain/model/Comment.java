@@ -1,44 +1,58 @@
 package br.com.jayatech.octoevents.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "comment")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_internal")
+    private Long idInternal;
+
+    @Column(name = "commentId")
+    private Long commentId;
+
+    @Column(name = "url")
     private String url;
 
-    @JsonProperty("html_url")
+    @Column(name = "html_url")
     private String htmlUrl;
 
-    @JsonProperty("issue_url")
+    @Column(name = "issue_url")
     private String issueUrl;
 
-    @JsonProperty("node_id")
+    @Column(name = "node_id")
     private String nodeId;
 
+    @Column(name = "user_id_internal")
     private User user;
 
-    @JsonProperty("created_at")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @JsonProperty("updated_at")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @JsonProperty("author_association")
+    @Column(name = "author_association")
     private String authorAssociation;
 
+    @Column(name = "body")
     private String body;
+
+    @Column(name = "reactions")
     private Reactions reactions;
 
-    @JsonProperty("performed_via_github_app")
+    @Column(name = "performed_github_app")
     private Object performedGithubApp;
 }

@@ -1,6 +1,6 @@
-package br.com.jayatech.octoevents.controller;
+package br.com.jayatech.octoevents.rest.controller;
 
-import br.com.jayatech.octoevents.domain.model.IssueEvent;
+import br.com.jayatech.octoevents.rest.dto.IssueEventDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +14,7 @@ public class IssueEventController {
     public static final Logger LOGGER = LoggerFactory.getLogger(IssueEventController.class);
 
     @PostMapping
-    public void registerIssueEvent(@RequestBody IssueEvent issueEvent) {
+    public void registerIssueEvent(@RequestBody IssueEventDto issueEvent) {
         LOGGER.info("Deu tudo certo issueEvent: {}", issueEvent);
     }
 }
