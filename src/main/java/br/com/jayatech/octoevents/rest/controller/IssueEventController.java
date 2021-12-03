@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/issues")
 public class IssueEventController {
     public static final Logger LOGGER = LoggerFactory.getLogger(IssueEventController.class);
 
     @PostMapping
-    public void registerIssueEvent(@RequestBody IssueEventDto issueEvent) {
-        LOGGER.info("Deu tudo certo issueEvent: {}", issueEvent);
+    public void registerIssueEvent(@Valid @RequestBody IssueEventDto issueEventDto) {
+        LOGGER.info("Deu tudo certo issueEvent: {}", issueEventDto);
     }
 }

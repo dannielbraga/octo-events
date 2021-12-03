@@ -1,58 +1,64 @@
 package br.com.jayatech.octoevents.rest.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
-    private Long id;
-    private String login;
+    private final Long id;
+    private final String login;
+    private final String nodeId;
+    private final String avatarUrl;
+    private final String gravatarId;
+    private final String url;
+    private final String htmlUrl;
+    private final String followersUrl;
+    private final String followingUrl;
+    private final String gistsUrl;
+    private final String starredUrl;
+    private final String subscriptionsUrl;
+    private final String organizationsUrl;
+    private final String reposUrl;
+    private final String eventsUrl;
+    private final String receivedEventsUrl;
+    private final String type;
+    private final boolean siteAdmin;
 
-    @JsonProperty("node_id")
-    private String nodeId;
-
-    @JsonProperty("avatar_url")
-    private String avatarUrl;
-
-    @JsonProperty("gravatar_id")
-    private String gravatarId;
-
-    private String url;
-
-    @JsonProperty("html_url")
-    private String htmlUrl;
-
-    @JsonProperty("followers_url")
-    private String followersUrl;
-
-    @JsonProperty("following_url")
-    private String followingUrl;
-
-    @JsonProperty("gists_url")
-    private String gistsUrl;
-
-    @JsonProperty("starred_url")
-    private String starredUrl;
-
-    @JsonProperty("subscriptions_url")
-    private String subscriptionsUrl;
-
-    @JsonProperty("organizations_url")
-    private String organizationsUrl;
-
-    @JsonProperty("repos_url")
-    private String reposUrl;
-
-    @JsonProperty("events_url")
-    private String eventsUrl;
-
-    @JsonProperty("received_events_url")
-    private String receivedEventsUrl;
-
-    private String type;
-
-    @JsonProperty("site_admin")
-    private boolean siteAdmin;
+    @JsonCreator
+    public UserDto(final Long id, final String login, @JsonProperty("node_id") final String nodeId,
+                   @JsonProperty("avatar_url") final String avatarUrl,
+                   @JsonProperty("gravatar_id") final String gravatarId, final String url,
+                   @JsonProperty("html_url") final String htmlUrl,
+                   @JsonProperty("followers_url") final String followersUrl,
+                   @JsonProperty("following_url") final String followingUrl,
+                   @JsonProperty("gists_url") final String gistsUrl,
+                   @JsonProperty("starred_url") final String starredUrl,
+                   @JsonProperty("subscriptions_url") final String subscriptionsUrl,
+                   @JsonProperty("organizations_url") final String organizationsUrl,
+                   @JsonProperty("repos_url") final String reposUrl,
+                   @JsonProperty("events_url") final String eventsUrl,
+                   @JsonProperty("received_events_url") final String receivedEventsUrl, final String type,
+                   @JsonProperty("site_admin") final boolean siteAdmin) {
+        this.id = id;
+        this.login = login;
+        this.nodeId = nodeId;
+        this.avatarUrl = avatarUrl;
+        this.gravatarId = gravatarId;
+        this.url = url;
+        this.htmlUrl = htmlUrl;
+        this.followersUrl = followersUrl;
+        this.followingUrl = followingUrl;
+        this.gistsUrl = gistsUrl;
+        this.starredUrl = starredUrl;
+        this.subscriptionsUrl = subscriptionsUrl;
+        this.organizationsUrl = organizationsUrl;
+        this.reposUrl = reposUrl;
+        this.eventsUrl = eventsUrl;
+        this.receivedEventsUrl = receivedEventsUrl;
+        this.type = type;
+        this.siteAdmin = siteAdmin;
+    }
 }
