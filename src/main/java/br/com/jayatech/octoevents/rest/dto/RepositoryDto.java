@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -79,10 +78,8 @@ public class RepositoryDto {
     private final boolean archived;
     private final boolean disabled;
     private final int openIssuesCount;
-    private final Object license;
     private final boolean allowforking;
     private final boolean isTemplate;
-    private final List<Object> topics;
     private final String visibility;
     private final int forks;
     private final int openIssues;
@@ -90,11 +87,16 @@ public class RepositoryDto {
     private final String defaultBranch;
 
     @JsonCreator
-    public RepositoryDto(final Long id, @JsonProperty("node_id") final String nodeId, final String name,
+    public RepositoryDto(@JsonProperty("id") final Long id,
+                         @JsonProperty("node_id") final String nodeId,
+                         @JsonProperty("name") final String name,
                          @JsonProperty("full_name") final String fullName,
                          @JsonProperty("private") final boolean isPrivate,
-                         @JsonProperty("owner") final OwnerDto ownerDto, @JsonProperty("html_url") final String htmlUrl,
-                         final String description, final boolean fork, final String url,
+                         @JsonProperty("owner") final OwnerDto ownerDto,
+                         @JsonProperty("html_url") final String htmlUrl,
+                         @JsonProperty("description") final String description,
+                         @JsonProperty("fork") final boolean fork,
+                         @JsonProperty("url") final String url,
                          @JsonProperty("forks_url") final String forksUrl,
                          @JsonProperty("keys_url") final String keysUrl,
                          @JsonProperty("collaborators_url") final String collaboratorsUrl,
@@ -134,23 +136,32 @@ public class RepositoryDto {
                          @JsonProperty("created_at") final LocalDateTime createdAt,
                          @JsonProperty("updated_at") final LocalDateTime updatedAt,
                          @JsonProperty("pushed_at") final LocalDateTime pushedAt,
-                         @JsonProperty("git_url") final String gitUrl, @JsonProperty("ssh_url") final String sshUrl,
-                         @JsonProperty("clone_url") final String cloneUrl, @JsonProperty("svn_url") final String svnUrl,
-                         final String homepage, final int size,
+                         @JsonProperty("git_url") final String gitUrl,
+                         @JsonProperty("ssh_url") final String sshUrl,
+                         @JsonProperty("clone_url") final String cloneUrl,
+                         @JsonProperty("svn_url") final String svnUrl,
+                         @JsonProperty("homepage") final String homepage,
+                         @JsonProperty("size") final int size,
                          @JsonProperty("stargazers_count") final int stargazersCount,
-                         @JsonProperty("watchers_count") final int watchersCount, final String language,
+                         @JsonProperty("watchers_count") final int watchersCount,
+                         @JsonProperty("language") final String language,
                          @JsonProperty("has_issues") final boolean hasIssues,
                          @JsonProperty("has_projects") final boolean hasProjects,
                          @JsonProperty("has_downloads") final boolean hasDownloads,
                          @JsonProperty("has_wiki") final boolean hasWiki,
                          @JsonProperty("has_pages") final boolean hasPages,
                          @JsonProperty("forks_count") final int forksCount,
-                         @JsonProperty("mirror_url") final String mirrorUrl, final boolean archived,
-                         final boolean disabled, @JsonProperty("open_issues_count") final int openIssuesCount,
-                         final Object license, final boolean allowforking,
-                         @JsonProperty("is_template") final boolean isTemplate, final List<Object> topics,
-                         final String visibility, final int forks, @JsonProperty("open_issues") final int openIssues,
-                         final int watchers, @JsonProperty("default_branch") final String defaultBranch) {
+                         @JsonProperty("mirror_url") final String mirrorUrl,
+                         @JsonProperty("archived") final boolean archived,
+                         @JsonProperty("disabled") final boolean disabled,
+                         @JsonProperty("open_issues_count") final int openIssuesCount,
+                         @JsonProperty("allowforking") final boolean allowforking,
+                         @JsonProperty("is_template") final boolean isTemplate,
+                         @JsonProperty("visibility") final String visibility,
+                         @JsonProperty("forks") final int forks,
+                         @JsonProperty("open_issues") final int openIssues,
+                         @JsonProperty("watchers") final int watchers,
+                         @JsonProperty("default_branch") final String defaultBranch) {
         this.id = id;
         this.nodeId = nodeId;
         this.name = name;
@@ -219,10 +230,8 @@ public class RepositoryDto {
         this.archived = archived;
         this.disabled = disabled;
         this.openIssuesCount = openIssuesCount;
-        this.license = license;
         this.allowforking = allowforking;
         this.isTemplate = isTemplate;
-        this.topics = topics;
         this.visibility = visibility;
         this.forks = forks;
         this.openIssues = openIssues;

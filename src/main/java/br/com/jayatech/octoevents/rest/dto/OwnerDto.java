@@ -28,9 +28,12 @@ public class OwnerDto {
     private final boolean siteAdmin;
 
     @JsonCreator
-    public OwnerDto(final Long id, final String login, @JsonProperty("node_id") final String nodeId,
+    public OwnerDto(@JsonProperty("id") final Long id,
+                    @JsonProperty("login") final String login,
+                    @JsonProperty("node_id") final String nodeId,
                     @JsonProperty("avatar_url") final String avatarUrl,
-                    @JsonProperty("gravatar_id") final String gravatarId, final String url,
+                    @JsonProperty("gravatar_id") final String gravatarId,
+                    @JsonProperty("url") final String url,
                     @JsonProperty("html_url") final String htmlUrl,
                     @JsonProperty("followers_url") final String followersUrl,
                     @JsonProperty("following_url") final String followingUrl,
@@ -40,7 +43,8 @@ public class OwnerDto {
                     @JsonProperty("organizations_url") final String organizationsUrl,
                     @JsonProperty("repos_url") final String reposUrl,
                     @JsonProperty("events_url") final String eventsUrl,
-                    @JsonProperty("received_events_url") final String receivedEventsUrl, final String type,
+                    @JsonProperty("received_events_url") final String receivedEventsUrl,
+                    @JsonProperty("type") final String type,
                     @JsonProperty("site_admin") final boolean siteAdmin) {
         this.id = id;
         this.login = login;

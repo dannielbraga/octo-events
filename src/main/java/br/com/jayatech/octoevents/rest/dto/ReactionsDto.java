@@ -20,10 +20,16 @@ public class ReactionsDto {
     private final int eyes;
 
     @JsonCreator
-    public ReactionsDto(final String url, @JsonProperty("total_count") final int totalCount,
-                        @JsonProperty("+1") final int plusOne, @JsonProperty("-1") final int minusOne,
-                        final int laugh, final int hooray, final int confused, final int heart, final int rocket,
-                        final int eyes) {
+    public ReactionsDto(@JsonProperty("url") final String url,
+                        @JsonProperty("total_count") final int totalCount,
+                        @JsonProperty("+1") final int plusOne,
+                        @JsonProperty("-1") final int minusOne,
+                        @JsonProperty("laugh") final int laugh,
+                        @JsonProperty("hooray") final int hooray,
+                        @JsonProperty("confused") final int confused,
+                        @JsonProperty("heart") final int heart,
+                        @JsonProperty("rocket") final int rocket,
+                        @JsonProperty("eyes") final int eyes) {
         this.url = url;
         this.totalCount = totalCount;
         this.plusOne = plusOne;

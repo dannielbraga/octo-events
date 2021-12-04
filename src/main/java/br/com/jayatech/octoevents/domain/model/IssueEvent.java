@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "issue_event")
@@ -15,9 +16,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class IssueEvent {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_internal")
     private Integer idInternal;
+
+    @Column(name = "created_at_internal")
+    private LocalDateTime createdAtInternal;
 
     @Column(name = "action")
     private String action;
@@ -26,12 +30,15 @@ public class IssueEvent {
     @JoinColumn(name = "issue_id_internal")
     private Issue issue;
 
-    @Column(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "comment_id_internal")
     private Comment comment;
 
-    @Column(name = "id")
-    private Repository repositoryDto;
+    @ManyToOne
+    @JoinColumn(name = "repository_id_internal")
+    private Repository repository;
 
-    @Column(name = "id")
-    private Sender senderDto;
+    @ManyToOne
+    @JoinColumn(name = "sender_id_internal")
+    private Sender sender;
 }

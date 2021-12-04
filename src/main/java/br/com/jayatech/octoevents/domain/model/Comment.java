@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "comment")
@@ -16,12 +17,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_internal")
     private Long idInternal;
 
-    @Column(name = "commentId")
-    private Long commentId;
+    @Column(name = "created_at_internal")
+    private LocalDateTime createdAtInternal;
+
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "url")
     private String url;
@@ -35,7 +39,8 @@ public class Comment {
     @Column(name = "node_id")
     private String nodeId;
 
-    @Column(name = "user_id_internal")
+    @ManyToOne
+    @JoinColumn(name = "user_id_internal")
     private User user;
 
     @Column(name = "created_at")
@@ -50,9 +55,10 @@ public class Comment {
     @Column(name = "body")
     private String body;
 
-    @Column(name = "reactions")
+    @OneToOne
+    @JoinColumn(name = "reactions_id_internal")
     private Reactions reactions;
 
-    @Column(name = "performed_github_app")
-    private Object performedGithubApp;
+    @OneToMany(mappedBy = "comment")
+    private Set<IssueEvent> issueEvents;
 }

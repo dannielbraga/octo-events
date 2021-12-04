@@ -1,7 +1,5 @@
 package br.com.jayatech.octoevents.domain.model;
 
-import br.com.jayatech.octoevents.rest.dto.ReactionsDto;
-import br.com.jayatech.octoevents.rest.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "issue")
@@ -19,32 +17,35 @@ import java.util.List;
 @AllArgsConstructor
 public class Issue {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_internal")
     private Long idInternal;
 
-    @Column(name = "issue_id")
-    private Long issueId;
+    @Column(name = "created_at_internal")
+    private LocalDateTime createdAtInternal;
+
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "url")
     private String url;
 
-    @Column(name = "repositoryUrl")
+    @Column(name = "repository_url")
     private String repositoryUrl;
 
-    @Column(name = "labelsUrl")
+    @Column(name = "labels_url")
     private String labelsUrl;
 
-    @Column(name = "commentsUrl")
+    @Column(name = "comments_url")
     private String commentsUrl;
 
-    @Column(name = "eventsUrl")
+    @Column(name = "events_url")
     private String eventsUrl;
 
-    @Column(name = "htmlUrl")
+    @Column(name = "html_url")
     private String htmlUrl;
 
-    @Column(name = "nodeId")
+    @Column(name = "node_id")
     private String nodeId;
 
     @Column(name = "number")
@@ -53,26 +54,15 @@ public class Issue {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "userDto")
-    private UserDto userDto;
-
-    @Column(name = "labels")
-    private List<Object> labels;
+    @ManyToOne
+    @JoinColumn(name = "user_id_internal")
+    private User user;
 
     @Column(name = "state")
     private String state;
 
     @Column(name = "locked")
     private boolean locked;
-
-    @Column(name = "assignee")
-    private Object assignee;
-
-    @Column(name = "assignees")
-    private List<Object> assignees;
-
-    @Column(name = "milestone")
-    private Object milestone;
 
     @Column(name = "comments")
     private int comments;
@@ -95,12 +85,13 @@ public class Issue {
     @Column(name = "body")
     private String body;
 
-    @Column(name = "reactions")
-    private ReactionsDto reactions;
+    @OneToOne
+    @JoinColumn(name = "reactions_id_internal")
+    private Reactions reactions;
 
     @Column(name = "timelineUrl")
     private String timelineUrl;
 
-    @Column(name = "performed_github_app")
-    private Object performedGithubApp;
+    @OneToMany(mappedBy = "issue")
+    private Set<IssueEvent> issueEvents;
 }
