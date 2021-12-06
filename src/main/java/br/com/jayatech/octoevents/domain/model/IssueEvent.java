@@ -17,28 +17,28 @@ import java.time.LocalDateTime;
 public class IssueEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Integer idInternal;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @Column(name = "action")
     private String action;
 
     @ManyToOne
-    @JoinColumn(name = "issue_id_internal")
+    @JoinColumn(name = "issue_id")
     private Issue issue;
 
     @ManyToOne
-    @JoinColumn(name = "comment_id_internal")
+    @JoinColumn(name = "comment_id")
     private Comment comment;
 
     @ManyToOne
-    @JoinColumn(name = "repository_id_internal")
-    private Repository repository;
+    @JoinColumn(name = "repository_id")
+    private RepositoryGithub repository;
 
     @ManyToOne
-    @JoinColumn(name = "sender_id_internal")
+    @JoinColumn(name = "sender_id")
     private Sender sender;
 }

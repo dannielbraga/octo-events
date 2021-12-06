@@ -16,10 +16,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Sender {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Integer idInternal;
-
     @Column(name = "id")
     private Long id;
 
@@ -74,6 +70,6 @@ public class Sender {
     @Column(name = "site_admin")
     private boolean siteAdmin;
 
-    @OneToMany(mappedBy = "sender")
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
     private Set<IssueEvent> issueEvents;
 }

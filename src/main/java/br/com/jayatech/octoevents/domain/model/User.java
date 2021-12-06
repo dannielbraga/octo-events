@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -17,13 +16,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Long idInternal;
-
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
-
     @Column(name = "id")
     private Long id;
 
@@ -78,9 +70,9 @@ public class User {
     @Column(name = "site_admin")
     private boolean siteAdmin;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Comment> comments;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Issue> issues;
 }

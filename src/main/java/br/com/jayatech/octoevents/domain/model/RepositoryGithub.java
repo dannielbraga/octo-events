@@ -15,15 +15,8 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Repository {
+public class RepositoryGithub {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Integer idInternal;
-
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
-
     @Column(name = "id")
     private Long id;
 
@@ -250,6 +243,6 @@ public class Repository {
     @Column(name = "default_branch")
     private String defaultBranch;
 
-    @OneToMany(mappedBy = "repository")
+    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
     private Set<IssueEvent> issueEvents;
 }

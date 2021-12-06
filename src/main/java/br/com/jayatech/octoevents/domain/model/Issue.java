@@ -17,13 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Issue {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Long idInternal;
-
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
-
     @Column(name = "id")
     private Long id;
 
@@ -55,7 +48,7 @@ public class Issue {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "user_id_internal")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "state")
@@ -76,22 +69,22 @@ public class Issue {
     @Column(name = "closed_at")
     private LocalDateTime closedAt;
 
-    @Column(name = "authorAssociation")
+    @Column(name = "author_association")
     private String authorAssociation;
 
-    @Column(name = "activeLockReason")
+    @Column(name = "active_lock_reason")
     private String activeLockReason;
 
     @Column(name = "body")
     private String body;
 
     @OneToOne
-    @JoinColumn(name = "reactions_id_internal")
+    @JoinColumn(name = "reactions_id")
     private Reactions reactions;
 
-    @Column(name = "timelineUrl")
+    @Column(name = "timeline_url")
     private String timelineUrl;
 
-    @OneToMany(mappedBy = "issue")
+    @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL)
     private Set<IssueEvent> issueEvents;
 }

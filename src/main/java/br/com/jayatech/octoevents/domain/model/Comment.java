@@ -17,13 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Long idInternal;
-
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
-
     @Column(name = "id")
     private Long id;
 
@@ -40,7 +33,7 @@ public class Comment {
     private String nodeId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id_internal")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "created_at")
@@ -56,9 +49,9 @@ public class Comment {
     private String body;
 
     @OneToOne
-    @JoinColumn(name = "reactions_id_internal")
+    @JoinColumn(name = "reactions_id")
     private Reactions reactions;
 
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
     private Set<IssueEvent> issueEvents;
 }

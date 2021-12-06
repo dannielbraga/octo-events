@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -18,13 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class Owner {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Integer idInternal;
-
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
-
     @Column(name = "id")
     private Long id;
 
@@ -80,6 +72,6 @@ public class Owner {
     private boolean siteAdmin;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "owner")
-    private Set<Repository> repositories;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private Set<RepositoryGithub> repositories;
 }

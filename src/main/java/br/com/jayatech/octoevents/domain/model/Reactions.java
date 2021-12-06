@@ -17,11 +17,11 @@ import java.time.LocalDateTime;
 public class Reactions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_internal")
-    private Long idInternal;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "created_at_internal")
-    private LocalDateTime createdAtInternal;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @Column(name = "url")
     private String url;
