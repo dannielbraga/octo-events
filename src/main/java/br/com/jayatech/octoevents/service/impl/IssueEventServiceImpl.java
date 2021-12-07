@@ -48,7 +48,7 @@ public class IssueEventServiceImpl implements IssueEventService {
     public List<IssueEventDto> getEventsForIssueId(Long idIssue) {
         var issue = issueRepository
                 .findById(idIssue)
-                .orElseThrow(() ->  new IssueNotFoundException("No issues found for the given id."));
+                .orElseThrow(() ->  new IssueNotFoundException("Issue not found for the given ID"));
 
         return issueEventRepository.findAllByIssueId(issue.getId())
                 .stream()
