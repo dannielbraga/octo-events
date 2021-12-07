@@ -70,6 +70,6 @@ public class Sender {
     @Column(name = "site_admin")
     private boolean siteAdmin;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<IssueEvent> issueEvents;
 }

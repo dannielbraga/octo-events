@@ -47,7 +47,7 @@ public class Issue {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -78,13 +78,13 @@ public class Issue {
     @Column(name = "body")
     private String body;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reactions_id")
     private Reactions reactions;
 
     @Column(name = "timeline_url")
     private String timelineUrl;
 
-    @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<IssueEvent> issueEvents;
 }

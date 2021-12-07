@@ -32,7 +32,7 @@ public class RepositoryGithub {
     @Column(name = "is_private")
     private boolean isPrivate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
@@ -243,6 +243,6 @@ public class RepositoryGithub {
     @Column(name = "default_branch")
     private String defaultBranch;
 
-    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<IssueEvent> issueEvents;
 }

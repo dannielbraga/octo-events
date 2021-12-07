@@ -32,7 +32,7 @@ public class Comment {
     @Column(name = "node_id")
     private String nodeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -48,7 +48,7 @@ public class Comment {
     @Column(name = "body")
     private String body;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reactions_id")
     private Reactions reactions;
 

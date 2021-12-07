@@ -4,21 +4,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
 @Getter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IssueEventDto {
     @NotNull(message = "Action must not be null.")
-    private final String action;
+    private String action;
     @NotNull(message = "Issue must not be null.")
-    private final IssueDto issueDto;
-    private final CommentDto commentDto;
+    private IssueDto issueDto;
+    private CommentDto commentDto;
     @NotNull(message = "Repository must not be null.")
-    private final RepositoryDto repositoryDto;
+    private RepositoryDto repositoryDto;
     @NotNull(message = "Sender must not be null.")
-    private final SenderDto senderDto;
+    private SenderDto senderDto;
 
     @JsonCreator
     public IssueEventDto(@JsonProperty("action") final String action,

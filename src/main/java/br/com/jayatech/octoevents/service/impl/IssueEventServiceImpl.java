@@ -2,6 +2,7 @@ package br.com.jayatech.octoevents.service.impl;
 
 import br.com.jayatech.octoevents.domain.model.*;
 import br.com.jayatech.octoevents.domain.repository.*;
+import br.com.jayatech.octoevents.exception.IssueNotFoundException;
 import br.com.jayatech.octoevents.rest.dto.*;
 import br.com.jayatech.octoevents.service.IssueEventService;
 import org.modelmapper.ModelMapper;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class IssueEventServiceImpl implements IssueEventService {
@@ -42,6 +45,20 @@ public class IssueEventServiceImpl implements IssueEventService {
     }
 
     @Override
+    public List<IssueEventDto> getEventsForIssueId(Long idIssue) {
+        var issue = issueRepository
+                .findById(idIssue)
+                .orElseThrow(() ->  new IssueNotFoundException("No issues found for the given id."));
+
+        List<IssueEvent> issueEvents = issueEventRepository.findAllByIssueId(issue.getId());
+
+        return issueEventRepository.findAllByIssueId(issue.getId())
+                .stream()
+                .map(this::toIssueEventDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public void registerIssueEvent(final IssueEventDto issueEventDto) {
         var issueEvent = new IssueEvent();
@@ -56,6 +73,10 @@ public class IssueEventServiceImpl implements IssueEventService {
         }
 
         issueEventRepository.save(issueEvent);
+    }
+
+    private IssueEventDto toIssueEventDto(IssueEvent issueEvent) {
+        return modelMapper.map(issueEvent, IssueEventDto.class);
     }
 
     private Issue saveIssue(IssueDto issueDto) {
