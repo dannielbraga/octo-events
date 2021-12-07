@@ -19,7 +19,7 @@ public class IssueEventController {
     private final IssueEventService issueEventService;
 
     @Autowired
-    public IssueEventController(IssueEventService issueEventService) {
+    public IssueEventController(final IssueEventService issueEventService) {
         this.issueEventService = issueEventService;
     }
 
