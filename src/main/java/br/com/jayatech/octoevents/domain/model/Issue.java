@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -48,7 +49,7 @@ public class Issue {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @Column(name = "state")
@@ -79,12 +80,12 @@ public class Issue {
     private String body;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reactions_id")
+    @JoinColumn(name = "reactions_id", referencedColumnName = "id")
     private Reactions reactions;
 
     @Column(name = "timeline_url")
     private String timelineUrl;
 
     @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<IssueEvent> issueEvents;
+    private Set<IssueEvent> issueEvents = new HashSet<>();
 }

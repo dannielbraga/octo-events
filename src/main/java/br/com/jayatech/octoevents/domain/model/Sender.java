@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -71,5 +72,5 @@ public class Sender {
     private boolean siteAdmin;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<IssueEvent> issueEvents;
+    private Set<IssueEvent> issueEvents = new HashSet<>();
 }

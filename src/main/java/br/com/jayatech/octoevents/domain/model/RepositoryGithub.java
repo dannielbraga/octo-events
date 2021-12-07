@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,7 +34,7 @@ public class RepositoryGithub {
     private boolean isPrivate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Owner owner;
 
     @Column(name = "html_url")
@@ -244,5 +245,5 @@ public class RepositoryGithub {
     private String defaultBranch;
 
     @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<IssueEvent> issueEvents;
+    private Set<IssueEvent> issueEvents = new HashSet<>();
 }

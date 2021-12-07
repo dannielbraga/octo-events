@@ -50,12 +50,24 @@ public class IssueEventServiceImpl implements IssueEventService {
                 .findById(idIssue)
                 .orElseThrow(() ->  new IssueNotFoundException("No issues found for the given id."));
 
-        List<IssueEvent> issueEvents = issueEventRepository.findAllByIssueId(issue.getId());
-
         return issueEventRepository.findAllByIssueId(issue.getId())
                 .stream()
                 .map(this::toIssueEventDto)
                 .collect(Collectors.toList());
+    }
+
+    private IssueEventDto toIssueEventDto(IssueEvent issueEvent) {
+        var issueEventDto = new IssueEventDto();
+        issueEventDto.setAction(issueEvent.getAction());
+        issueEventDto.setIssueDto(modelMapper.map(issueEvent.getIssue(), IssueDto.class));
+        issueEventDto.setRepositoryDto(modelMapper.map(issueEvent.getRepository(), RepositoryDto.class));
+        issueEventDto.setSenderDto(modelMapper.map(issueEvent.getSender(), SenderDto.class));
+
+        if (Objects.nonNull(issueEvent.getComment())) {
+            issueEventDto.setCommentDto(modelMapper.map(issueEvent.getComment(), CommentDto.class));
+        }
+
+        return issueEventDto;
     }
 
     @Override
@@ -73,10 +85,6 @@ public class IssueEventServiceImpl implements IssueEventService {
         }
 
         issueEventRepository.save(issueEvent);
-    }
-
-    private IssueEventDto toIssueEventDto(IssueEvent issueEvent) {
-        return modelMapper.map(issueEvent, IssueEventDto.class);
     }
 
     private Issue saveIssue(IssueDto issueDto) {

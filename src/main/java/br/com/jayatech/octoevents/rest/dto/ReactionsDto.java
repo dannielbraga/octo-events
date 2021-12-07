@@ -4,20 +4,24 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReactionsDto {
-    private final String url;
-    private final int totalCount;
-    private final int plusOne;
-    private final int minusOne;
-    private final int laugh;
-    private final int hooray;
-    private final int confused;
-    private final int heart;
-    private final int rocket;
-    private final int eyes;
+    private String url;
+    private int totalCount;
+    private int plusOne;
+    private int minusOne;
+    private int laugh;
+    private int hooray;
+    private int confused;
+    private int heart;
+    private int rocket;
+    private int eyes;
 
     @JsonCreator
     public ReactionsDto(@JsonProperty("url") final String url,

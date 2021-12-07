@@ -4,23 +4,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommentDto {
-    private final Long id;
-    private final String url;
-    private final String htmlUrl;
-    private final String issueUrl;
-    private final String nodeId;
-    private final UserDto userDto;
-    private final LocalDateTime createdAt;
-    private final LocalDateTime updatedAt;
-    private final String authorAssociation;
-    private final String body;
-    private final ReactionsDto reactions;
+    private Long id;
+    private String url;
+    private String htmlUrl;
+    private String issueUrl;
+    private String nodeId;
+    private UserDto userDto;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private String authorAssociation;
+    private String body;
+    private ReactionsDto reactions;
 
     @JsonCreator
     public CommentDto(@JsonProperty("id") final Long id,

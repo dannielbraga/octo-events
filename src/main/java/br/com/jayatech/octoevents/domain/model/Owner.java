@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -73,5 +74,5 @@ public class Owner {
 
     @JsonIgnore
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private Set<RepositoryGithub> repositories;
+    private Set<RepositoryGithub> repositories = new HashSet<>();
 }

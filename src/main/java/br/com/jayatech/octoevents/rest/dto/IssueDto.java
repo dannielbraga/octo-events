@@ -4,34 +4,38 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class IssueDto {
-    private final Long id;
-    private final String url;
-    private final String repositoryUrl;
-    private final String labelsUrl;
-    private final String commentsUrl;
-    private final String eventsUrl;
-    private final String htmlUrl;
-    private final String nodeId;
-    private final int number;
-    private final String title;
-    private final UserDto userDto;
-    private final String state;
-    private final boolean locked;
-    private final int comments;
-    private final LocalDateTime createdAt;
-    private final LocalDateTime updatedAt;
-    private final LocalDateTime closedAt;
-    private final String authorAssociation;
-    private final String activeLockReason;
-    private final String body;
-    private final ReactionsDto reactions;
-    private final String timelineUrl;
+    private Long id;
+    private String url;
+    private String repositoryUrl;
+    private String labelsUrl;
+    private String commentsUrl;
+    private String eventsUrl;
+    private String htmlUrl;
+    private String nodeId;
+    private int number;
+    private String title;
+    private UserDto userDto;
+    private String state;
+    private boolean locked;
+    private int comments;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private LocalDateTime closedAt;
+    private String authorAssociation;
+    private String activeLockReason;
+    private String body;
+    private ReactionsDto reactions;
+    private String timelineUrl;
 
     @JsonCreator
     public IssueDto(@JsonProperty("id") final Long id,

@@ -4,28 +4,32 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SenderDto {
-    private final Long id;
-    private final String login;
-    private final String nodeId;
-    private final String avatarUrl;
-    private final String gravatarId;
-    private final String url;
-    private final String htmlUrl;
-    private final String followersUrl;
-    private final String followingUrl;
-    private final String gistsUrl;
-    private final String starredUrl;
-    private final String subscriptionsUrl;
-    private final String organizationsUrl;
-    private final String reposUrl;
-    private final String eventsUrl;
-    private final String receivedEventsUrl;
-    private final String type;
-    private final boolean siteAdmin;
+    private Long id;
+    private String login;
+    private String nodeId;
+    private String avatarUrl;
+    private String gravatarId;
+    private String url;
+    private String htmlUrl;
+    private String followersUrl;
+    private String followingUrl;
+    private String gistsUrl;
+    private String starredUrl;
+    private String subscriptionsUrl;
+    private String organizationsUrl;
+    private String reposUrl;
+    private String eventsUrl;
+    private String receivedEventsUrl;
+    private String type;
+    private boolean siteAdmin;
 
     @JsonCreator
     public SenderDto(@JsonProperty("id") final Long id,

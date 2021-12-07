@@ -18,7 +18,7 @@ public class IssueEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -27,18 +27,18 @@ public class IssueEvent {
     private String action;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "issue_id")
+    @JoinColumn(name = "issue_id", referencedColumnName = "id")
     private Issue issue;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "comment_id", referencedColumnName = "id")
     private Comment comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "repository_id")
+    @JoinColumn(name = "repository_id", referencedColumnName = "id")
     private RepositoryGithub repository;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name = "sender_id", referencedColumnName = "id")
     private Sender sender;
 }
