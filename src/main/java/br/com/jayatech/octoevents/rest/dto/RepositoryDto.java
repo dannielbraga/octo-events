@@ -19,7 +19,7 @@ public class RepositoryDto {
     private String name;
     private String fullName;
     private boolean isPrivate;
-    private OwnerDto ownerDto;
+    private OwnerDto owner;
     private String htmlUrl;
     private String description;
     private boolean fork;
@@ -96,7 +96,7 @@ public class RepositoryDto {
                          @JsonProperty("name") final String name,
                          @JsonProperty("full_name") final String fullName,
                          @JsonProperty("private") final boolean isPrivate,
-                         @JsonProperty("owner") final OwnerDto ownerDto,
+                         @JsonProperty("owner") final OwnerDto owner,
                          @JsonProperty("html_url") final String htmlUrl,
                          @JsonProperty("description") final String description,
                          @JsonProperty("fork") final boolean fork,
@@ -171,7 +171,7 @@ public class RepositoryDto {
         this.name = name;
         this.fullName = fullName;
         this.isPrivate = isPrivate;
-        this.ownerDto = ownerDto;
+        this.owner = owner;
         this.htmlUrl = htmlUrl;
         this.description = description;
         this.fork = fork;

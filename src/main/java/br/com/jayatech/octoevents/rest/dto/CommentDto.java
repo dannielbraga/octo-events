@@ -19,7 +19,7 @@ public class CommentDto {
     private String htmlUrl;
     private String issueUrl;
     private String nodeId;
-    private UserDto userDto;
+    private UserDto user;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String authorAssociation;
@@ -32,7 +32,7 @@ public class CommentDto {
                       @JsonProperty("html_url") final String htmlUrl,
                       @JsonProperty("issue_url") final String issueUrl,
                       @JsonProperty("node_id") final String nodeId,
-                      @JsonProperty("user") final UserDto userDto,
+                      @JsonProperty("user") final UserDto user,
                       @JsonProperty("created_at") final LocalDateTime createdAt,
                       @JsonProperty("updated_at") final LocalDateTime updatedAt,
                       @JsonProperty("author_association") final String authorAssociation,
@@ -43,7 +43,7 @@ public class CommentDto {
         this.htmlUrl = htmlUrl;
         this.issueUrl = issueUrl;
         this.nodeId = nodeId;
-        this.userDto = userDto;
+        this.user = user;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.authorAssociation = authorAssociation;

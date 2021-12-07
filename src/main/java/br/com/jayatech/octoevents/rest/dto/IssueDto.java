@@ -24,7 +24,7 @@ public class IssueDto {
     private String nodeId;
     private int number;
     private String title;
-    private UserDto userDto;
+    private UserDto user;
     private String state;
     private boolean locked;
     private int comments;
@@ -48,7 +48,7 @@ public class IssueDto {
                     @JsonProperty("node_id") final String nodeId,
                     @JsonProperty("number") final int number,
                     @JsonProperty("title") final String title,
-                    @JsonProperty("user") final UserDto userDto,
+                    @JsonProperty("user") final UserDto user,
                     @JsonProperty("state") final String state,
                     @JsonProperty("locked") final boolean locked,
                     @JsonProperty("comments") final int comments,
@@ -70,7 +70,7 @@ public class IssueDto {
         this.nodeId = nodeId;
         this.number = number;
         this.title = title;
-        this.userDto = userDto;
+        this.user = user;
         this.state = state;
         this.locked = locked;
         this.comments = comments;
